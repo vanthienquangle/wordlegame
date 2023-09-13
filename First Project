@@ -1,0 +1,43 @@
+import random
+
+words = ["four", "five", "mssi", "cats", "dogs"]
+
+def give_instructor():
+    print("This is the word guessing game. Enjoy!")
+
+def main():
+    give_instructor()
+
+  
+  hidden_word = random.choice(words)
+    attempts = 5
+
+  while attempts > 0:
+        guess = input("Enter a four-letter word: ").lower()  # Convert the guess to lowercase
+
+  if len(guess) != 4:
+        print("Please enter a four-letter word.")
+            continue
+
+  if hidden_word == guess:
+        print("Congrats! You guessed the word:", hidden_word)
+            return True
+        else:
+            result = ""
+            for i, j in zip(guess, hidden_word):
+                if i == j:
+                    result += "(C)"  # Correct letter in the correct position
+                elif i in hidden_word:
+                    result += "(W)"  # Correct letter in the wrong position
+                else:
+                    result += "(N)"  # Not a correct letter
+
+  print(result)
+  attempts -= 1
+  print(f"You have {attempts} attempts left")
+
+  if attempts == 0:
+        print("Out of attempts. The word was:", hidden_word)
+
+if __name__ == "__main__":
+    main()
